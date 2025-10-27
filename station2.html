@@ -1,25 +1,95 @@
-<!doctype html>
-<html lang="de">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Station 2 – A</title>
-
+<!doctype html><html lang='de'><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Station 2 – A</title>
 <style>
-  body{margin:0;padding:24px;background:#0b0b10;color:#f2f4f8;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-  .card{max-width:860px;margin:0 auto;background:#151524;padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
-  h1{margin:0 0 8px;font-size:30px} p{font-size:18px;margin:10px 0}
-  .badge{display:inline-block;background:#22284a;border:1px solid #334;color:#cde;padding:4px 8px;border-radius:8px;font-weight:700}
-  .btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:#ffb454;color:#1a1b22;text-decoration:none;font-weight:800}
-  .footer{margin-top:18px;color:#9aa0a6;font-size:12px}
+  :root{
+    --bg:#0a0a0f; --card:#11121b; --ink:#eef2ff; --muted:#aab1c2;
+    --accent:#ff9d3b; --accent2:#ffb454; --edge:#2b2f45;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; padding:24px; background:radial-gradient(120% 100% at 50% 0% , #111428 0%, #0a0a0f 60%, #08080c 100%);
+    color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6;
+  }
+  .fog,.fog:before,.fog:after{
+    position:fixed; inset:-20%; pointer-events:none; filter:blur(14px);
+    background:radial-gradient(60% 50% at 50% 50%, rgba(200,200,255,.07), rgba(200,200,255,0) 60%);
+    animation:fog 70s linear infinite; opacity:.28; z-index:0;
+  }
+  .fog:before{content:""; animation-duration:95s; animation-direction:reverse; opacity:.22}
+  .fog:after{content:""; animation-duration:110s; opacity:.18}
+  @keyframes fog{
+    0%{ transform:translate3d(-10%, -6%, 0) scale(1.05) }
+    50%{ transform:translate3d(12%, 8%, 0) scale(1.1) }
+    100%{ transform:translate3d(-10%, -6%, 0) scale(1.05) }
+  }
+  .card{
+    max-width:900px; margin:0 auto; position:relative; z-index:2;
+    background:linear-gradient(180deg, rgba(15,16,26,.85), rgba(12,13,20,.92));
+    padding:28px; border-radius:18px; box-shadow:0 18px 44px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);
+    border:1px solid var(--edge);
+  }
+  h1{margin:0 0 8px; font-size:30px; text-shadow:0 0 18px rgba(255,157,59,.15)}
+  h2{margin:16px 0 6px; font-size:20px; color:var(--accent2)}
+  p{font-size:18px; margin:10px 0}
+  .divider{height:10px; margin:10px 0 14px; background:
+    radial-gradient(12px 8px at 12px 4px, rgba(255,180,84,.85), rgba(255,180,84,0) 55%),
+    linear-gradient(to right, rgba(255,157,59,.45), rgba(255,157,59,0) 40%);
+    filter:drop-shadow(0 0 8px rgba(255,157,59,.25));
+  }
+  .badge{display:inline-block;background:#1a1d32;border:1px solid #2a2f4a;color:#d0d7ee;padding:4px 8px;border-radius:8px;font-weight:700}
+  .btn{
+    display:inline-block; margin-top:14px; padding:12px 18px; border-radius:14px; text-decoration:none; font-weight:900; color:#111;
+    background:radial-gradient(120% 120% at 30% 30%, var(--accent2), var(--accent));
+    box-shadow:0 0 0 rgba(255,157,59,0.0), 0 10px 28px rgba(0,0,0,.6); letter-spacing:.3px;
+    transition:transform .2s ease, filter .2s ease;
+    filter: drop-shadow(0 0 12px rgba(255,157,59,.3));
+  }
+  .btn:hover{ transform:translateY(-2px) scale(1.02); filter: drop-shadow(0 0 16px rgba(255,180,84,.55)); }
+  .hint{background:#121427;border:1px dashed #2a2d48;padding:10px;border-radius:10px;margin-top:10px;color:#cfd6ea}
+  .footer{margin-top:18px;color:var(--muted);font-size:12px}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  input[type=text]{width:100%;max-width:420px;background:#0f0f18;border:1px solid #33364a;color:#e9edf5;
+    border-radius:10px;padding:10px 12px;font-size:18px}
+  .msg{margin-top:12px;padding:12px;border-radius:12px;display:none}
+  .ok{background:#12351a;border:1px solid #2b7a3f;color:#b6f2c6}
+  .bad{background:#3a1b1b;border:1px solid #7a2b2b;color:#ffc0c0}
+  .treasure{display:none;margin-top:14px;font-weight:900;font-size:22px;color:#ffb454;text-shadow:0 0 8px rgba(255,157,59,.65), 0 0 18px rgba(255,180,84,.45)}
+  #confetti{position:fixed; inset:0; pointer-events:none; z-index:1}
 </style>
 
-<body>
-  <div class="card">
-    <h1>Station 2 – Schattenzeichen</h1>
-    <p><span class="badge">Geheimbuchstabe:</span> <strong>A</strong></p>
-    <p><strong>Aufgabe:</strong> Formt mit euren Körpern und einer Taschenlampe ein Schattenmonster. Macht ein Foto.</p>
-    <a class="btn" href="https://maria694d.github.io/mission-pumpkin/station3.html">Weiter</a>
-    <div class="footer">Station 2 von 8</div>
-  </div>
-</body>
-</html>
+<script>
+let AC = window.AudioContext||window.webkitAudioContext; 
+let ctx = null;
+function ensureCtx(){ 
+  try{
+    if(!ctx) ctx = new AC();
+    if(ctx.state === 'suspended') return ctx.resume();
+  }catch(e){}
+  return Promise.resolve();
+}
+function tone(f,d,delay){
+  if(!ctx) return;
+  const now = ctx.currentTime;
+  const o = ctx.createOscillator(); o.type='sine'; o.frequency.value=f;
+  const g = ctx.createGain();
+  g.gain.setValueAtTime(0.0001, now+delay);
+  g.gain.exponentialRampToValueAtTime(0.22, now+delay+0.03);
+  g.gain.exponentialRampToValueAtTime(0.0001, now+delay+d);
+  o.connect(g).connect(ctx.destination);
+  o.start(now+delay); o.stop(now+delay+d+0.05);
+}
+function playSpooky(id){
+  ensureCtx().then(()=>{
+    if(id===1){ tone(220,0.7,0); tone(180,0.5,0.75); }
+    else if(id===2){ tone(520,0.2,0); tone(380,0.18,0.23); }
+    else if(id===3){ tone(300,0.4,0); tone(260,0.3,0.42); }
+    else if(id===4){ tone(196,0.9,0); }
+    else if(id===5){ tone(260,0.5,0); }
+    else if(id===6){ tone(1200,0.12,0); tone(900,0.12,0.15); }
+    else if(id===7){ tone(320,0.5,0); tone(280,0.4,0.52); }
+    else if(id===8){ tone(523,0.25,0); tone(659,0.25,0.26); tone(784,0.35,0.54); }
+  });
+}
+</script>
+<body><div class='fog'></div><div class='card'><h1>Station 2 – Schattenzeichen</h1><div class='divider'></div><p><span class='badge'>Geheimbuchstabe:</span> <strong>A</strong></p><h2>Story</h2><p>Zwischen den Ästen huscht etwas vorbei. Nur Schatten verraten die Wahrheit.</p><h2>Aufgabe</h2><p>Formt mit euren Körpern und einer Taschenlampe ein Schattenmonster an Wand oder Boden. Macht ein Foto als Beweis.</p><div class='row'><a class='btn' href='javascript:playSpooky(2)'>► Sound abspielen</a><a class='btn' href='https://maria694d.github.io/mission-pumpkin/station3.html'>Weiter</a></div><div class='hint'><strong>Geheimhinweis:</strong> Mit zwei Lampen werden Schatten länger – probiert schräge Winkel.</div><div class='footer'>Station 2 von 8</div></div></body></html>
