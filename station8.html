@@ -1,5 +1,5 @@
 <!doctype html><html lang="de"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>Station 8 – Der Schatz des Kürbisgeists</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Station 8 – A</title>
 <style>
   :root{--bg:#0b0b10;--card:#151524;--text:#f2f4f8;--accent:#ffb454;--muted:#9aa0a6;}
   *{box-sizing:border-box} body{margin:0;padding:24px;background:var(--bg);color:var(--text);
@@ -13,16 +13,17 @@
   .secret{margin-top:12px;padding:10px;border-radius:10px;background:#112; border:1px solid #223}
   details summary{cursor:pointer;font-weight:700}
   audio{width:100%; margin-top:10px}
+  .badge{display:inline-block;background:#22284a;border:1px solid #334; color:#cde; padding:4px 8px; border-radius:8px; font-weight:700}
 </style>
 <script>
-  // enable audio on first user interaction
   document.addEventListener('click',()=>{
     document.querySelectorAll('audio[data-autoplay="1"]').forEach(a=>{ a.play().catch(()=>{}); });
   }, {once:true});
 </script>
 
 <body><div class="card">
-<h1>Station 8 – Der Schatz des Kürbisgeists</h1>
+<h1>Station 8 – Aufgabe</h1>
+<p><span class="badge">Geheimbuchstabe dieser Station:</span> <strong>A</strong></p>
 <svg class="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
   <ellipse cx="32" cy="36" rx="22" ry="18" fill="#ff922b"/>
   <ellipse cx="22" cy="36" rx="10" ry="16" fill="#ffa94d"/>
@@ -31,13 +32,10 @@
   <path d="M20 30 L26 34 L20 38 Z M44 30 L38 34 L44 38 Z" fill="#1b1b22"/>
   <rect x="28" y="40" width="8" height="4" rx="2" fill="#1b1b22"/>
 </svg>
-<audio controls preload="auto" data-autoplay="1">
-  <source src="assets/chime.wav" type="audio/wav">
-  Dein Browser unterstützt keine Audio-Wiedergabe.
-</audio>
+<audio controls preload="auto" data-autoplay="1"><source src="assets/chime.wav" type="audio/wav"></audio>
 <p><strong>Story:</strong> Der Fluch ist fast gebrochen. Nur noch ein Schritt… oder mehrere.</p>
-<p><strong>Aufgabe:</strong> Addiert die Buchstaben aller Vornamen in eurer Gruppe. Geht so viele Schritte weiter – dort wartet der Schatz. 🎁</p>
+<p><strong>Aufgabe:</strong> Addiert die Buchstaben aller Vornamen in eurer Gruppe. Geht so viele Schritte weiter – dort wartet der Schatz. Sprecht dann gemeinsam das Codewort! 🎁</p>
 <details class="secret"><summary>🔒 Geheimhinweis anzeigen</summary><p>Geheimhinweis: Legt den Schatz in Sichtweite, aber leicht versteckt (unter Wurzel/Bank).</p></details>
 <a class="btn" href="index.html">Zurück zum Start</a>
-<div class="footer">Station 8 von 8 · Tippe einmal irgendwo, damit Sounds automatisch starten.</div>
+<div class="footer">Station 8 von 8 · Sammelt alle Buchstaben → Codewort: Mathilda</div>
 </div></body></html>

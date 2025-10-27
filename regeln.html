@@ -13,9 +13,9 @@
   .secret{margin-top:12px;padding:10px;border-radius:10px;background:#112; border:1px solid #223}
   details summary{cursor:pointer;font-weight:700}
   audio{width:100%; margin-top:10px}
+  .badge{display:inline-block;background:#22284a;border:1px solid #334; color:#cde; padding:4px 8px; border-radius:8px; font-weight:700}
 </style>
 <script>
-  // enable audio on first user interaction
   document.addEventListener('click',()=>{
     document.querySelectorAll('audio[data-autoplay="1"]').forEach(a=>{ a.play().catch(()=>{}); });
   }, {once:true});

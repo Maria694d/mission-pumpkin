@@ -1,5 +1,5 @@
 <!doctype html><html lang="de"><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><title>Station 7 – Der unheimliche Klang</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Station 7 – D</title>
 <style>
   :root{--bg:#0b0b10;--card:#151524;--text:#f2f4f8;--accent:#ffb454;--muted:#9aa0a6;}
   *{box-sizing:border-box} body{margin:0;padding:24px;background:var(--bg);color:var(--text);
@@ -13,29 +13,27 @@
   .secret{margin-top:12px;padding:10px;border-radius:10px;background:#112; border:1px solid #223}
   details summary{cursor:pointer;font-weight:700}
   audio{width:100%; margin-top:10px}
+  .badge{display:inline-block;background:#22284a;border:1px solid #334; color:#cde; padding:4px 8px; border-radius:8px; font-weight:700}
 </style>
 <script>
-  // enable audio on first user interaction
   document.addEventListener('click',()=>{
     document.querySelectorAll('audio[data-autoplay="1"]').forEach(a=>{ a.play().catch(()=>{}); });
   }, {once:true});
 </script>
 
 <body><div class="card">
-<h1>Station 7 – Der unheimliche Klang</h1>
+<h1>Station 7 – Aufgabe</h1>
+<p><span class="badge">Geheimbuchstabe dieser Station:</span> <strong>D</strong></p>
 <svg class="img" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
   <path d="M32 6c-12 0-20 8-20 20v26l4-4 4 4 4-4 4 4 4-4 4 4 4-4 4 4V26C52 14 44 6 32 6z" fill="#fff"/>
   <circle cx="24" cy="26" r="4" fill="#0b0b0f"/>
   <circle cx="40" cy="26" r="4" fill="#0b0b0f"/>
   <path d="M24 38c2 2 6 3 8 3s6-1 8-3" stroke="#0b0b0f" stroke-width="3" fill="none" stroke-linecap="round"/>
 </svg>
-<audio controls preload="auto" data-autoplay="1">
-  <source src="assets/echo.wav" type="audio/wav">
-  Dein Browser unterstützt keine Audio-Wiedergabe.
-</audio>
+<audio controls preload="auto" data-autoplay="1"><source src="assets/echo.wav" type="audio/wav"></audio>
 <p><strong>Story:</strong> Ein fernes Echo antwortet euch. Es klingt fast wie ein Lachen…</p>
 <p><strong>Aufgabe:</strong> Nehmt eine 10‑Sekunden‑Sprachnachricht als Geisterstimme auf (Flüstern, Kratzen, »Huuuh«). Spielt sie euch im Dunkeln vor.</p>
 <details class="secret"><summary>🔒 Geheimhinweis anzeigen</summary><p>Geheimhinweis: Probiert die Aufnahme rückwärts – noch gruseliger.</p></details>
-<a class="btn" href="station8.html">Weiter</a>
-<div class="footer">Station 7 von 8 · Tippe einmal irgendwo, damit Sounds automatisch starten.</div>
+<a class="btn" href="station7.html">Weiter</a>
+<div class="footer">Station 7 von 8 · Sammelt alle Buchstaben → Codewort: Mathilda</div>
 </div></body></html>
