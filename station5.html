@@ -1,95 +1,25 @@
-<!doctype html><html lang='de'><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'>
+<!doctype html>
+<html lang="de">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Station 5 – I</title>
 
 <style>
   body{margin:0;padding:24px;background:#0b0b10;color:#f2f4f8;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
   .card{max-width:860px;margin:0 auto;background:#151524;padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
   h1{margin:0 0 8px;font-size:30px} p{font-size:18px;margin:10px 0}
-  .img{display:block;margin:14px auto;width:170px;height:170px}
-  .btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:#ffb454;color:#1a1b22;text-decoration:none;font-weight:700}
+  .badge{display:inline-block;background:#22284a;border:1px solid #334;color:#cde;padding:4px 8px;border-radius:8px;font-weight:700}
+  .btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:#ffb454;color:#1a1b22;text-decoration:none;font-weight:800}
   .footer{margin-top:18px;color:#9aa0a6;font-size:12px}
-  .hint{background:#101019;border:1px dashed #2a2a3a;padding:10px;border-radius:10px;margin-top:10px;color:#cdd3da}
-  .badge{display:inline-block;background:#22284a;border:1px solid #334; color:#cde; padding:4px 8px; border-radius:8px; font-weight:700}
-  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .result{margin-top:10px;padding:10px;border-radius:10px;display:none}
-  .ok{background:#12351a;border:1px solid #2b7a3f;color:#b6f2c6}
-  .bad{background:#3a1b1b;border:1px solid #7a2b2b;color:#ffc0c0}
-  input[type=text]{width:100%;max-width:420px;background:#0f0f18;border:1px solid #33364a;color:#e9edf5;
-    border-radius:10px;padding:10px 12px;font-size:18px}
 </style>
 
-<script>
-let AC = window.AudioContext||window.webkitAudioContext; 
-let ctx = null;
-function ensureCtx(){ 
-  if(!ctx) ctx = new AC();
-  if(ctx.state === 'suspended') return ctx.resume(); 
-  return Promise.resolve();
-}
-function playPattern(){ 
-  ensureCtx().then(()=>{ 
-    const now = ctx.currentTime;
-    function tone(f,d,delay){ 
-      const o = ctx.createOscillator(); o.type='sine'; o.frequency.value=f;
-      const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, now+delay);
-      g.gain.exponentialRampToValueAtTime(0.2, now+delay+0.03);
-      g.gain.exponentialRampToValueAtTime(0.0001, now+delay+d);
-      o.connect(g).connect(ctx.destination); o.start(now+delay); o.stop(now+delay+d+0.05);
-    }
-    // Station 5 pattern
-    tone(260,0.5,0);
-  }).catch(()=>{});
-}
-function norm(s){
-  return s.toLowerCase()
-    .replace(/[.,;:!?]/g,' ')
-    .replace(/\s+/g,' ')
-    .trim()
-    .replace(/^(der|die|das|ein|eine|mein|meine|dein|deine)\s+/,'')
-    .replace(/^dein\s+/,'')
-    .replace(/^mein\s+/,'')
-}
-function check(){
-  const el = document.getElementById('ans');
-  const val = norm(el.value);
-  const ok = (val === 'schatten') || (val.endsWith(' schatten')) || (val === 'schatten dein') || (val === 'dein schatten');
-  const box = document.getElementById('res');
-  const txt = document.getElementById('restxt');
-  box.style.display = 'block';
-  if(ok){
-    box.className = 'result ok';
-    txt.textContent = 'Richtig! 👏 Weiter zur nächsten Station.';
-    document.getElementById('next').removeAttribute('aria-disabled');
-    document.getElementById('next').style.opacity = '1';
-  }else{
-    box.className = 'result bad';
-    txt.textContent = 'Leider falsch. Tipp: Es folgt dir – aber du kannst es nie berühren.';
-  }
-}
-document.addEventListener('keydown', (e)=>{
-  if(e.key==='Enter'){ check(); }
-});
-</script>
-
-<body><div class='card'>
-<h1>Station 5 – Aufgabe</h1>
-<p><span class='badge'>Geheimbuchstabe dieser Station:</span> <strong>I</strong></p>
-<svg class='img' viewBox='0 0 64 32' xmlns='http://www.w3.org/2000/svg'><path d='M2 22 Q8 8 16 16 Q24 24 32 16 Q40 24 48 16 Q56 8 62 22 L54 20 L48 26 L42 20 L32 28 L22 20 L16 26 L10 20 Z' fill='#fff'/><circle cx='31' cy='16' r='2' fill='#0b0b0f'/><circle cx='33' cy='16' r='2' fill='#0b0b0f'/></svg>
-<div class='row'>
-  <a class='btn' href='javascript:playPattern()'>► Sound abspielen</a>
-</div>
-<p><strong>Story:</strong> Eure Schritte werden leiser. Plötzlich fehlt ein Geräusch – und doch ist etwas da.</p>
-<p><strong>Aufgabe:</strong> Rätsel: „Ich bin immer da, doch du siehst mich nur, wenn Licht fehlt. Ich folge dir, doch berühren kannst du mich nie. Wer bin ich?“</p>
-
-<h2>🔤 Dein Lösungswort</h2>
-<input id="ans" type="text" placeholder="Lösungswort eingeben … (z. B. Schatten)">
-<div class="row">
-  <a class="btn" href="javascript:check()">Antwort prüfen</a>
-  <a id="next" class="btn" href="station6.html" aria-disabled="true" style="opacity:.7">Weiter</a>
-</div>
-<div id="res" class="result"><span id="restxt"></span></div>
-
-<div class='hint'><strong>Geheimhinweis:</strong> Erklärt kurz, warum die Antwort passt – der Geist liebt Logik.</div>
-<div class='footer'>Station 5 von 8 · Codewort: Mathilda</div>
-</div></body></html>
+<body>
+  <div class="card">
+    <h1>Station 5 – Rätsel der Dunkelheit</h1>
+    <p><span class="badge">Geheimbuchstabe:</span> <strong>I</strong></p>
+    <p><strong>Aufgabe:</strong> Rätsel lösen (Antwort: Schatten) – optional eintippen auf dieser oder eurer Version.</p>
+    <a class="btn" href="https://maria694d.github.io/mission-pumpkin/station6.html">Weiter</a>
+    <div class="footer">Station 5 von 8</div>
+  </div>
+</body>
+</html>
