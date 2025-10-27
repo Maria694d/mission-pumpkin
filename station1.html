@@ -1,21 +1,25 @@
-<!doctype html><html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Station 1 – Der Ruf der Nacht</title>
+<!doctype html><html lang="de"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"><title>Station 1 – Der Ruf der Nacht</title>
 <style>
   :root{--bg:#0b0b10;--card:#151524;--text:#f2f4f8;--accent:#ffb454;--muted:#9aa0a6;}
-  *{box-sizing:border-box}
-  body{margin:0;padding:24px;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
-  .card{max-width:800px;margin:0 auto;background:var(--card);padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
-  h1{margin:0 0 8px 0;font-size:30px}
-  h2{margin:18px 0 8px 0;color:var(--accent);font-size:20px}
-  p{font-size:18px;margin:10px 0}
-  .img{display:block;margin:14px auto;width:160px;height:160px}
+  *{box-sizing:border-box} body{margin:0;padding:24px;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+  .card{max-width:860px;margin:0 auto;background:var(--card);padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+  h1{margin:0 0 8px;font-size:30px} h2{margin:18px 0 8px;color:var(--accent);font-size:20px} p{font-size:18px;margin:10px 0}
+  .img{display:block;margin:14px auto;width:170px;height:170px}
   .btn{display:inline-block;margin-top:16px;padding:10px 16px;border-radius:12px;background:var(--accent);color:#1a1b22;text-decoration:none;font-weight:700}
   .footer{margin-top:18px;color:var(--muted);font-size:12px}
   .hint{background:#101019;border:1px dashed #2a2a3a;padding:10px;border-radius:10px;margin-top:10px;color:#cdd3da}
-  ul{margin:8px 0 8px 20px}
-  .grid{display:grid;grid-template-columns:1fr;gap:10px}
-  @media (min-width:700px){.grid{grid-template-columns:1fr 1fr}}
+  .secret{margin-top:12px;padding:10px;border-radius:10px;background:#112; border:1px solid #223}
+  details summary{cursor:pointer;font-weight:700}
+  audio{width:100%; margin-top:10px}
 </style>
+<script>
+  // enable audio on first user interaction
+  document.addEventListener('click',()=>{
+    document.querySelectorAll('audio[data-autoplay="1"]').forEach(a=>{ a.play().catch(()=>{}); });
+  }, {once:true});
+</script>
 
 <body><div class="card">
 <h1>Station 1 – Der Ruf der Nacht</h1>
@@ -25,9 +29,13 @@
   <circle cx="40" cy="26" r="4" fill="#0b0b0f"/>
   <path d="M24 38c2 2 6 3 8 3s6-1 8-3" stroke="#0b0b0f" stroke-width="3" fill="none" stroke-linecap="round"/>
 </svg>
-<p><strong>Story:</strong> Der Wind hebt an, Blätter tanzen. Eine Stimme flüstert aus der Finsternis: »Zeigt mir eure Gesichter – wenn ihr euch traut.«</p>
-<p><strong>Aufgabe:</strong> Dreht ein 10‑Sekunden‑Video, in dem ihr wie Geister aus der Dunkelheit auftaucht. Nutzt nur Taschenlampen von unten. Wer schafft den gruseligsten Blick?</p>
-<div class="hint"><strong>Hinweis:</strong> Tipp: Für Extra‑Grusel filmt in Zeitlupe oder nutzt Blitz nur am Ende.</div>
+<audio controls preload="auto" data-autoplay="1">
+  <source src="assets/wind.wav" type="audio/wav">
+  Dein Browser unterstützt keine Audio-Wiedergabe.
+</audio>
+<p><strong>Story:</strong> Der Wind hebt an, Blätter tanzen. Eine ferne Stimme flüstert: »Zeigt eure Gesichter – wenn ihr euch traut.«</p>
+<p><strong>Aufgabe:</strong> Dreht ein 10‑Sekunden‑Video, in dem ihr wie Geister aus der Dunkelheit auftaucht. Nutzt Taschenlampen von unten.</p>
+<details class="secret"><summary>🔒 Geheimhinweis anzeigen</summary><p>Geheimhinweis: Haltet die Lampen tief – Schatten nach oben wirken unheimlicher.</p></details>
 <a class="btn" href="station2.html">Weiter</a>
-<div class="footer">Station 1 von 8 · Mission Pumpkin</div>
+<div class="footer">Station 1 von 8 · Tippe einmal irgendwo, damit Sounds automatisch starten.</div>
 </div></body></html>
