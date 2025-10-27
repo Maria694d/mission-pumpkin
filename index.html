@@ -1,1 +1,59 @@
-<!doctype html><html lang='de'><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Mission Pumpkin – Start</title><style>body{margin:0;padding:24px;background:#0b0b10;color:#f2f4f8;font-family:Arial,Helvetica,sans-serif;line-height:1.6}.card{max-width:860px;margin:0 auto;background:#151524;padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.35)}h1{margin:0 0 8px;font-size:30px}p{font-size:18px;margin:10px 0}.img{display:block;margin:14px auto;width:170px;height:170px}.btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:#ffb454;color:#1a1b22;text-decoration:none;font-weight:700}.footer{margin-top:18px;color:#9aa0a6;font-size:12px}.hint{background:#101019;border:1px dashed #2a2a3a;padding:10px;border-radius:10px;margin-top:10px;color:#cdd3da}.badge{display:inline-block;background:#22284a;border:1px solid #334; color:#cde; padding:4px 8px; border-radius:8px; font-weight:700}</style><script>let _ctx;function playTone(f=440,d=1e3){try{_ctx=_ctx||new (window.AudioContext||window.webkitAudioContext)();const o=_ctx.createOscillator(),g=_ctx.createGain();o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(1e-4,_ctx.currentTime);g.gain.exponentialRampToValueAtTime(.2,_ctx.currentTime+.05);g.gain.exponentialRampToValueAtTime(1e-4,_ctx.currentTime+d/1e3);o.connect(g).connect(_ctx.destination);o.start();o.stop(_ctx.currentTime+d/1e3+.05)}catch(e){}}</script><body><div class='card'><h1>🎃 Mission Pumpkin – Mathildas Nacht-Challenge</h1><p>Willkommen, Geisterjäger! Findet 8 Stationen, sammelt die <span class='badge'>Geheimbuchstaben</span> und sprecht am Ende das Codewort.</p><a class='btn' href='station1.html'>Zu Station 1</a><svg class='img' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><ellipse cx='32' cy='36' rx='22' ry='18' fill='#ff922b'/><ellipse cx='22' cy='36' rx='10' ry='16' fill='#ffa94d'/><ellipse cx='42' cy='36' rx='10' ry='16' fill='#ffa94d'/><rect x='29' y='12' width='6' height='10' rx='2' fill='#2b8a3e'/><path d='M20 30 L26 34 L20 38 Z M44 30 L38 34 L44 38 Z' fill='#1b1b22'/><rect x='28' y='40' width='8' height='4' rx='2' fill='#1b1b22'/></svg><div class='footer'>Drücke auf den ► Button, um den Sound zu starten.</div></div></body></html>
+<!doctype html><html lang='de'><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Mission Pumpkin – Start</title>
+
+<style>
+  body{margin:0;padding:24px;background:#0b0b10;color:#f2f4f8;font-family:Arial,Helvetica,sans-serif;line-height:1.6}
+  .card{max-width:860px;margin:0 auto;background:#151524;padding:28px;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+  h1{margin:0 0 8px;font-size:30px} p{font-size:18px;margin:10px 0}
+  .img{display:block;margin:14px auto;width:170px;height:170px}
+  .btn{display:inline-block;margin-top:16px;padding:12px 18px;border-radius:12px;background:#ffb454;color:#1a1b22;text-decoration:none;font-weight:700}
+  .footer{margin-top:18px;color:#9aa0a6;font-size:12px}
+  .hint{background:#101019;border:1px dashed #2a2a3a;padding:10px;border-radius:10px;margin-top:10px;color:#cdd3da}
+  .badge{display:inline-block;background:#22284a;border:1px solid #334; color:#cde; padding:4px 8px; border-radius:8px; font-weight:700}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .warning{background:#2a1b1b;border:1px solid #6b2b2b;padding:10px;border-radius:10px;margin-top:10px;color:#ffb4b4}
+</style>
+
+<script>
+let AC = window.AudioContext||window.webkitAudioContext; 
+let ctx = null;
+function ensureCtx(){ 
+  if(!ctx) ctx = new AC();
+  if(ctx.state === 'suspended') return ctx.resume(); 
+  return Promise.resolve();
+}
+function playPattern(id){ 
+  ensureCtx().then(()=>{ 
+    const now = ctx.currentTime;
+    const g = ctx.createGain(); g.connect(ctx.destination);
+    function tone(f,d,delay){ 
+      const o = ctx.createOscillator(); o.type='sine'; o.frequency.value=f;
+      const gn = ctx.createGain(); gn.gain.setValueAtTime(0.0001, now+delay);
+      gn.gain.exponentialRampToValueAtTime(0.2, now+delay+0.03);
+      gn.gain.exponentialRampToValueAtTime(0.0001, now+delay+d);
+      o.connect(gn).connect(g); o.start(now+delay); o.stop(now+delay+d+0.05);
+    }
+    if(id===1){ tone(220,0.7,0); tone(180,0.5,0.75); }
+    else if(id===2){ tone(520,0.2,0); tone(380,0.18,0.23); }
+    else if(id===3){ tone(300,0.4,0); tone(260,0.3,0.42); }
+    else if(id===4){ tone(196,0.9,0); }
+    else if(id===5){ tone(260,0.5,0); }
+    else if(id===6){ tone(1200,0.12,0); tone(900,0.12,0.15); }
+    else if(id===7){ tone(320,0.5,0); tone(280,0.4,0.52); }
+    else if(id===8){ tone(523,0.25,0); tone(659,0.25,0.26); tone(784,0.35,0.54); }
+  }).catch(()=>{});
+}
+function fallbackPlay(){ 
+  const a = document.getElementById('fallbackAudio'); 
+  if(a) a.play().catch(()=>{});
+}
+</script>
+
+<body><div class='card'>
+<h1>🎃 Mission Pumpkin – Mathildas Nacht-Challenge</h1>
+<p>Willkommen, Geisterjäger! Findet 8 Stationen, sammelt die <span class='badge'>Geheimbuchstaben</span> und sprecht am Ende das Codewort.</p>
+<a class='btn' href='station1.html'>Zu Station 1</a>
+<svg class='img' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'><ellipse cx='32' cy='36' rx='22' ry='18' fill='#ff922b'/><ellipse cx='22' cy='36' rx='10' ry='16' fill='#ffa94d'/><ellipse cx='42' cy='36' rx='10' ry='16' fill='#ffa94d'/><rect x='29' y='12' width='6' height='10' rx='2' fill='#2b8a3e'/><path d='M20 30 L26 34 L20 38 Z M44 30 L38 34 L44 38 Z' fill='#1b1b22'/><rect x='28' y='40' width='8' height='4' rx='2' fill='#1b1b22'/></svg>
+<div class='footer'>Hinweis: Drücke bei jeder Station auf „► Sound abspielen“.</div>
+</div></body></html>
