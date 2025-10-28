@@ -32,7 +32,53 @@
     </div>
   </div></div>
 </body></html>
-<audio autoplay loop>
-  <source src="hintergrund.mp3" type="audio/mpeg">
-  Dein Browser unterstützt keine Audio-Wiedergabe.
-</audio>
+<!-- Hintergrundmusik: wie bei Frieder -->
+<audio id="bgm" src="./Hintergrund.mp3" loop preload="auto"></audio>
+
+<button id="musicBtn" aria-label="Musik" style="
+  position:fixed;right:14px;top:14px;z-index:99;
+  background:linear-gradient(135deg,#ffb454,#ff9333);
+  color:#111;border:0;border-radius:999px;
+  padding:10px 14px;font-weight:800">
+  🔈 Musik
+</button>
+
+<script>
+(function(){
+  const a = document.getElementById('bgm');
+  const b = document.getElementById('musicBtn');
+  if(!a || !b) return;
+
+  a.volume = 0.20;         // ggf. anpassen
+  a.playsInline = true;    // wichtig für iOS
+
+  // Zustand anwenden
+  function refresh(){
+    const on = localStorage.getItem('mp_bgm_on') === '1';
+    b.textContent = on ? '🔊 Musik' : '🔈 Musik';
+    if(on){ a.play().catch(()=>{}); } else { a.pause(); }
+  }
+
+  // Button toggelt Musik + merkt Zustand
+  b.addEventListener('click', () => {
+    const on = localStorage.getItem('mp_bgm_on') === '1';
+    localStorage.setItem('mp_bgm_on', on ? '0' : '1');
+    refresh();
+  });
+
+  // Wenn Seite neu geladen wird: Zustand wiederherstellen
+  window.addEventListener('pageshow', refresh);
+
+  // Nach der ersten Nutzer-Interaktion (Tap/Klick) Autoplay erlauben
+  function tryResume(){
+    if(localStorage.getItem('mp_bgm_on') === '1'){
+      a.play().catch(()=>{});
+    }
+  }
+  document.addEventListener('pointerdown', tryResume, { once:true });
+  document.addEventListener('keydown',     tryResume, { once:true });
+
+  refresh();
+})();
+</script>
+
