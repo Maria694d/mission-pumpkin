@@ -3,181 +3,124 @@
 <title>Mission Pumpkin – Start</title>
 
 <style>
-  :root{--ink:#eef2ff;--muted:#aab1c2;--edge:#2b2f45;--accent:#ff9d3b;--accent2:#ffb454;--card:rgba(12,13,22,.86)}
-  *{box-sizing:border-box} html,body{height:100%}
-  body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#0a0a0f;line-height:1.6}
-  .bg{position:fixed;inset:0;background:center/cover no-repeat;filter:brightness(.8) contrast(1.05);z-index:0}
-  .fog,.fog:before,.fog:after{position:fixed;inset:-20%;pointer-events:none;filter:blur(14px);background:radial-gradient(60% 50% at 50% 50%,rgba(200,200,255,.07),rgba(200,200,255,0) 60%);animation:fog 70s linear infinite;opacity:.28;z-index:1}
-  .fog:before{content:"";animation-duration:95s;animation-direction:reverse;opacity:.22}
-  .fog:after{content:"";animation-duration:110s;opacity:.18}
-  @keyframes fog{0%{transform:translate3d(-10%,-6%,0) scale(1.05)}50%{transform:translate3d(12%,8%,0) scale(1.1)}100%{transform:translate3d(-10%,-6%,0) scale(1.05)}}
-  .wrap{position:relative;z-index:2;min-height:100%;display:flex;align-items:center;justify-content:center;padding:20px}
-  .card{width:min(980px,96vw);background:var(--card);border:1px solid var(--edge);border-radius:18px;box-shadow:0 18px 44px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.03);padding:24px}
-  h1{margin:0 0 8px;font-size:30px;text-shadow:0 0 18px rgba(255,157,59,.18)}
-  h2{margin:16px 0 6px;font-size:20px;color:var(--accent2)}
-  p{font-size:18px;margin:10px 0}
-  .divider{height:10px;margin:10px 0 14px;background:radial-gradient(12px 8px at 12px 4px,rgba(255,180,84,.85),rgba(255,180,84,0) 55%),linear-gradient(to right,rgba(255,157,59,.45),rgba(255,157,59,0) 40%);filter:drop-shadow(0 0 8px rgba(255,157,59,.25))}
-  .btn{display:inline-block;margin-top:12px;padding:12px 18px;border-radius:14px;text-decoration:none;font-weight:900;color:#111;background:radial-gradient(120% 120% at 30% 30%,var(--accent2),var(--accent));box-shadow:0 10px 28px rgba(0,0,0,.6);filter:drop-shadow(0 0 12px rgba(255,157,59,.35))}
-  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
-  input[type=text]{width:100%;max-width:420px;background:#0f0f18;border:1px solid #33364a;color:#e9edf5;border-radius:10px;padding:10px 12px;font-size:18px}
-  .msg{margin-top:10px;padding:12px;border-radius:12px;display:none}
-  .ok{background:#12351a;border:1px solid #2b7a3f;color:#b6f2c6}
-  .bad{background:#3a1b1b;border:1px solid #7a2b2b;color:#ffc0c0}
-  .footer{margin-top:12px;color:var(--muted);font-size:12px}
-  .gate{position:fixed;inset:0;background:rgba(6,6,10,.86);display:none;place-items:center;z-index:5;text-align:center;padding:20px}
+  :root{
+    --ink:#eef2ff; --muted:#aab1c2; --edge:#2b2f45; --accent:#ff9d3b; --accent2:#ffb454;
+    --cardbg: rgba(10,11,20,.86);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; color:var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: radial-gradient(120% 100% at 50% 0% , #111428 0%, #0a0a0f 60%, #08080c 100%);
+    line-height:1.6;
+  }
+  .bg{
+    position:fixed; inset:0; z-index:0;
+    background-position:center; background-size:cover; background-repeat:no-repeat;
+    filter: brightness(.8) contrast(1.05) saturate(1.03);
+  }
+  .fog,.fog:before,.fog:after{
+    position:fixed; inset:-20%; z-index:1; pointer-events:none;
+    filter:blur(14px);
+    background:radial-gradient(60% 50% at 50% 50%, rgba(200,200,255,.07), rgba(200,200,255,0) 60%);
+    animation: fog 75s linear infinite; opacity:.28;
+  }
+  .fog:before{content:""; animation-duration:100s; animation-direction:reverse; opacity:.22}
+  .fog:after{content:""; animation-duration:120s; opacity:.18}
+  @keyframes fog{
+    0%{ transform:translate3d(-10%, -6%, 0) scale(1.05) }
+    50%{ transform:translate3d(12%, 8%, 0) scale(1.10) }
+    100%{ transform:translate3d(-10%, -6%, 0) scale(1.05) }
+  }
+  .wrap{position:relative; z-index:2; min-height:100%; display:flex; align-items:center; justify-content:center; padding:22px}
+  .card{
+    width:min(1000px, 96vw);
+    background:var(--cardbg);
+    border:1px solid var(--edge);
+    border-radius:18px;
+    box-shadow: 0 18px 44px rgba(0,0,0,.55), inset 0 0 0 1px rgba(255,255,255,.03);
+    padding:24px;
+  }
+  h1{margin:0 0 8px; font-size:30px; text-shadow:0 0 18px rgba(255,157,59,.18)}
+  h2{margin:16px 0 6px; font-size:20px; color:var(--accent2)}
+  p{font-size:18px; margin:10px 0}
+  .divider{height:10px; margin:10px 0 14px; background:
+    radial-gradient(12px 8px at 12px 4px, rgba(255,180,84,.85), rgba(255,180,84,0) 55%),
+    linear-gradient(to right, rgba(255,157,59,.45), rgba(255,157,59,0) 40%);
+    filter:drop-shadow(0 0 8px rgba(255,157,59,.25));
+  }
+  .row{display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px}
+  .btn{
+    display:inline-block; padding:12px 18px; border-radius:14px; text-decoration:none; font-weight:900; color:#111;
+    background:radial-gradient(120% 120% at 30% 30%, var(--accent2), var(--accent));
+    box-shadow:0 10px 28px rgba(0,0,0,.6); letter-spacing:.3px; filter: drop-shadow(0 0 12px rgba(255,157,59,.35));
+  }
+  input[type=text]{
+    width:100%; max-width:420px; background:#0f0f18; border:1px solid #33364a; color:#e9edf5;
+    border-radius:10px; padding:10px 12px; font-size:18px;
+  }
+  .msg{margin-top:10px; padding:12px; border-radius:12px; display:none}
+  .ok{background:#12351a; border:1px solid #2b7a3f; color:#b6f2c6}
+  .bad{background:#3a1b1b; border:1px solid #7a2b2b; color:#ffc0c0}
+  .footer{margin-top:12px; color:var(--muted); font-size:12px}
+  /* Tap overlay to unlock audio */
+  .gate{position:fixed; inset:0; background:rgba(6,6,10,.86); display:none; place-items:center; z-index:5; text-align:center; padding:20px}
   .gate .inner{background:#151626;border:1px solid #2b2f45;padding:18px 20px;border-radius:14px;max-width:520px;box-shadow:0 18px 40px rgba(0,0,0,.6)}
-  .preroll{margin-top:8px;color:#ffcfa6}
+  .gate .inner h3{margin:0 0 8px} .gate .inner p{margin:6px 0 0}
 </style>
 
 <body>
-  <div class="bg" style="background-image:url('./img/start_bg.jpg')"></div>
+  <div class="bg" style="background-image:url('./img/deckblatt.jpg')"></div>
   <div class="fog"></div>
   <div id="gate" class="gate"><div class="inner">
-    <h3>🔊 Tippe einmal, um die Atmosphäre zu starten</h3>
-    <p id="prerollMsg" class="preroll"></p>
+    <h3>🔊 Tippe einmal, um die Geschichte zu starten</h3>
+    <p>Danach spielt Ton auf allen Seiten automatisch.</p>
     <p><a id="unlockBtn" class="btn">Sound aktivieren</a></p>
   </div></div>
   <div class="wrap"><div class="card" style="text-align:center">
     <h1>🎃 Mission Pumpkin – Nachtwanderung</h1>
-    <p>Folgt dem Flüstern des Kürbisgeists. Acht Prüfungen warten …</p>
+    <div class="divider"></div>
+    <p><em>Die Geschichte läuft kurz an – dann startet ihr bei Station 1.</em></p>
     <div class="row" style="justify-content:center">
-      <a class="btn" href="./station1.html">▶️ Station 1 starten</a>
+      <a class="btn" href="./station1.html">▶️ Start</a>
       <a class="btn" href="./regeln.html">📜 Regeln</a>
     </div>
   </div></div>
-  <audio id="track" src="./audio/start.mp3" preload="auto"></audio>
+  <audio id="story" src="./intro_story.mp3" preload="auto"></audio>
   
 <script>
-let AC = window.AudioContext || window.webkitAudioContext;
-let actx;
-const PREROLL_DEFAULT = 8; // seconds ambient before voice starts
-
-function ensureCtx(){
-  if(!actx){ actx = new AC(); }
-  if(actx.state === "suspended"){ return actx.resume(); }
-  return Promise.resolve();
+function unlockAndPlay(a){
+  try{
+    const prm = a.play();
+    localStorage.setItem('mp_audio_ready','1');
+    if(prm && prm.catch){ prm.catch(()=>{}); }
+  }catch(e){}
 }
-function unlocked(){ return localStorage.getItem('mp_audio_ready')==='1'; }
-function setUnlocked(){ localStorage.setItem('mp_audio_ready','1'); }
-
-// Simple hall via feedback delay
-function makeHall(node){
-  const dry = actx.createGain(); dry.gain.value = 0.92;
-  const wet = actx.createGain(); wet.gain.value = 0.28;
-  const delay = actx.createDelay(); delay.delayTime.value = 0.22;
-  const fb = actx.createGain(); fb.gain.value = 0.34;
-  node.connect(dry);
-  node.connect(delay);
-  delay.connect(fb).connect(delay);
-  delay.connect(wet);
-  const out = actx.createGain();
-  dry.connect(out); wet.connect(out);
-  return out;
+function ensureAudioUnlocked(){
+  return localStorage.getItem('mp_audio_ready')==='1';
 }
-
-// Background layers
-function makeWind(level=0.12){
-  const n = actx.createBufferSource();
-  const len = actx.sampleRate * 3;
-  const buf = actx.createBuffer(1, len, actx.sampleRate);
-  const data = buf.getChannelData(0);
-  for(let i=0;i<len;i++){ data[i] = (Math.random()*2-1)*0.45; }
-  n.buffer = buf; n.loop = true;
-  const lp = actx.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=700;
-  const g = actx.createGain(); g.gain.value = level;
-  n.connect(lp).connect(g);
-  return {src:n, out:g};
-}
-function makeRumble(level=0.06){
-  const osc = actx.createOscillator(); osc.type="sine"; osc.frequency.value = 48;
-  const g = actx.createGain(); g.gain.value = level;
-  osc.connect(g);
-  return {src:osc, out:g};
-}
-function makeChimes(level=0.08){
-  const o1 = actx.createOscillator(); o1.type="triangle"; o1.frequency.value=880;
-  const o2 = actx.createOscillator(); o2.type="triangle"; o2.frequency.value=1318;
-  const g = actx.createGain(); g.gain.value = 0.0;
-  const now = actx.currentTime;
-  g.gain.setValueAtTime(0, now);
-  g.gain.linearRampToValueAtTime(level, now+1.2);
-  g.gain.exponentialRampToValueAtTime(0.0001, now+6.0);
-  setTimeout(()=>{ g.gain.value = 0; }, 6200);
-  o1.connect(g); o2.connect(g);
-  return {src:[o1,o2], out:g};
-}
-
-function stationLayers(idx){
-  if(idx===0){ return ["wind","chimes"]; } // intro/start
-  if(idx===1){ return ["wind","rumble"]; }
-  if(idx===2){ return ["wind"]; }
-  if(idx===3){ return ["wind","chimes"]; }
-  if(idx===4){ return ["wind","rumble"]; }
-  if(idx===5){ return ["wind","rumble"]; }
-  if(idx===6){ return ["wind"]; }
-  if(idx===7){ return ["wind"]; }
-  if(idx===8){ return ["wind","chimes"]; }
-  return ["wind"];
-}
-
-function playScene(audioId, idx, prerollSec){
-  ensureCtx().then(()=>{
-    setUnlocked();
-    const el = document.getElementById(audioId);
-    el.pause();
-    el.currentTime = 0;
-
-    const mediaNode = actx.createMediaElementSource(el);
-    const hall = makeHall(mediaNode);
-    hall.connect(actx.destination);
-
-    // Background
-    const layers = stationLayers(idx);
-    const bgNodes = [];
-    layers.forEach(L=>{
-      let node;
-      if(L==="wind"){ node = makeWind(0.12); }
-      else if(L==="rumble"){ node = makeRumble(0.06); }
-      else if(L==="chimes"){ node = makeChimes(0.08); }
-      if(!node) return;
-      const wet = makeHall(node.out);
-      wet.connect(actx.destination);
-      if(Array.isArray(node.src)){ node.src.forEach(s=>s.start()); }
-      else{ node.src.start(); }
-      bgNodes.push(node);
-    });
-
-    // Start voice after preroll
-    const delayMs = Math.max(0, (prerollSec ?? PREROLL_DEFAULT)) * 1000;
-    setTimeout(()=>{ el.play().catch(()=>{}); }, delayMs);
-
-    // Cleanup when voice ends
-    el.onended = ()=>{
-      bgNodes.forEach(node=>{
-        try{
-          if(Array.isArray(node.src)){ node.src.forEach(s=>s.stop()); }
-          else{ node.src.stop(); }
-        }catch(e){}
-      });
-    };
-  });
-}
-
-function setupGate(audioId, idx, prerollSec){
+function setupUnlockOverlay(audioId, delayMs){
+  const a = document.getElementById(audioId);
   const gate = document.getElementById('gate');
-  const note = document.getElementById('prerollMsg');
-  if(note){ note.textContent = `Atmosphäre läuft … Stimme startet in ${prerollSec ?? 8} s`; }
-  if(unlocked()){ playScene(audioId, idx, prerollSec); return; }
-  gate.style.display='grid';
-  document.getElementById('unlockBtn').onclick = ()=>{
-    playScene(audioId, idx, prerollSec);
-    gate.style.display='none';
+  if(ensureAudioUnlocked()){
+    setTimeout(()=>unlockAndPlay(a), delayMs||0);
+    return;
+  }
+  gate.style.display = 'grid';
+  const btn = document.getElementById('unlockBtn');
+  btn.onclick = ()=>{
+    setTimeout(()=>unlockAndPlay(a), delayMs||0);
+    gate.style.display = 'none';
   };
   document.addEventListener('pointerdown', ()=>{
-    if(gate.style.display!=='none'){ playScene(audioId, idx, prerollSec); gate.style.display='none'; }
+    if(gate.style.display!=='none'){
+      setTimeout(()=>unlockAndPlay(a), delayMs||0);
+      gate.style.display='none';
+    }
   }, {once:true});
 }
 </script>
 
-  <script>setupGate('track', 0, 8);</script>
+  <script>setupUnlockOverlay('story', 200);</script>
 </body></html>
