@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Station 6 – Geisterfoto‑Challenge</title>
+<title>Die Legende des Pumpkin Spirit</title>
 
 <style>
   :root{--ink:#eef2ff;--muted:#aab1c2;--edge:#2b2f45;--accent:#ff9d3b;--accent2:#ffb454;--card:rgba(12,13,22,.86)}
@@ -30,7 +30,7 @@
 </style>
 
 <body>
-  <div class="bg" style="background-image:url('./img/st6_kamera.jpg')"></div>
+  <div class="bg" style="background-image:url('./img/intro_wald.jpg')"></div>
   <div class="fog"></div>
   <div id="gate" class="gate"><div class="inner">
     <h3>🔊 Tippe einmal, um die Atmosphäre zu starten</h3>
@@ -38,18 +38,13 @@
     <p><a id="unlockBtn" class="btn">Sound aktivieren</a></p>
   </div></div>
   <div class="wrap"><div class="card">
-    <h1>Station 6 – Geisterfoto‑Challenge</h1>
+    <h1>Die Legende des Pumpkin Spirit</h1>
     <div class="divider"></div>
-    <h2>Aufgabe</h2>
-    <p>Macht ein Gruppenfoto mit Blitz. Eine Person versucht, „unsichtbar“ zu sein. Danach ratet, wer der Geist war.</p>
-    
-    <div class="row">
-      <a class='btn' href='./station5.html'>← Zurück</a><a class='btn' href='./station7.html'>Weiter →</a>
-      <a class="btn" href="./index.html">⟲ Start</a>
-    </div>
-    <div class="footer">Atmosphäre läuft vorab, die Stimme startet nach wenigen Sekunden automatisch.</div>
+    <p><em>Die Atmosphäre beginnt sofort, die Stimme setzt nach ein paar Sekunden ein …</em></p>
+    <div class="row"><a class="btn" href="./index.html">▶️ Mission starten</a></div>
+    <div class="footer">Hinweis: Erst ein Tipp aktiviert Audio auf dem Handy.</div>
   </div></div>
-  <audio id="track" src="./audio/station6.mp3" preload="auto"></audio>
+  <audio id="track" src="./audio/intro_story.mp3" preload="auto"></audio>
   
 <script>
 let AC = window.AudioContext || window.webkitAudioContext;
@@ -183,5 +178,5 @@ function setupGate(audioId, idx, prerollSec){
 }
 </script>
 
-  <script>setupGate('track', 6, 8);</script>
+  <script>setupGate('track', 0, 8);</script>
 </body></html>
